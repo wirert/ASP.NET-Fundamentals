@@ -35,19 +35,13 @@ namespace MVCIntroDemo.Controllers
 
             return View();
         }
-
-        //[HttpPost]
+          
         public IActionResult NumbersToN(int count = 3)
         {
             ViewBag.Count = count;
             return View();
         }
-               
-        //public IActionResult NumbersToN()
-        //{
-        //    return View();
-        //}
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
