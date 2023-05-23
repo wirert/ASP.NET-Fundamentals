@@ -8,7 +8,7 @@ namespace MVCIntroDemo.Controllers
 {
     public class ProductController : Controller
     {
-        private ICollection<ProductViewModel> products
+        private IEnumerable<ProductViewModel> products
             = new List<ProductViewModel>()
         {
             new ProductViewModel()
@@ -31,8 +31,18 @@ namespace MVCIntroDemo.Controllers
             }
         };
 
-        public IActionResult All()
+        [ActionName("My-Products")]
+        public IActionResult All(string keyword)
         {
+            if (keyword != null)
+            {
+                var foundProducts = products.Where(p => p.Name
+                                                        .ToLower()
+                                                        .Contains(keyword.ToLower()));
+
+                return View(foundProducts);
+            }
+
             return View(products);
         }
 
@@ -76,6 +86,7 @@ namespace MVCIntroDemo.Controllers
 
             return File(Encoding.UTF8.GetBytes(sb.ToString().TrimEnd()), "text/plain");
         }
+
 
     }
 }
