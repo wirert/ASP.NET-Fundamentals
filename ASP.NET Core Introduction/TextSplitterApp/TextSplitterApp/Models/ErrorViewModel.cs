@@ -1,4 +1,4 @@
-namespace TestApp.Models
+namespace TextSplitterApp.Models
 {
     public class ErrorViewModel
     {

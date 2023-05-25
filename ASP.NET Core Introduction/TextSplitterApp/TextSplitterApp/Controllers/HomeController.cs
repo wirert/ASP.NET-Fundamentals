@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TestApp.Models;
+using TextSplitterApp.Models;
 
-namespace TestApp.Controllers
+namespace TextSplitterApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -20,12 +20,6 @@ namespace TestApp.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            
             return View();
         }
 

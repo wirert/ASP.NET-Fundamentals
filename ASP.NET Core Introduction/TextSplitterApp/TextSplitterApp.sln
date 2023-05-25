@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{72CF0BA2-0F8B-4460-B7F5-5C810D55FB0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextSplitterApp", "TextSplitterApp\TextSplitterApp.csproj", "{4D52DA47-3338-4062-AB65-E7264C04A49C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{72CF0BA2-0F8B-4460-B7F5-5C810D55FB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72CF0BA2-0F8B-4460-B7F5-5C810D55FB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72CF0BA2-0F8B-4460-B7F5-5C810D55FB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72CF0BA2-0F8B-4460-B7F5-5C810D55FB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D52DA47-3338-4062-AB65-E7264C04A49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D52DA47-3338-4062-AB65-E7264C04A49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D52DA47-3338-4062-AB65-E7264C04A49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D52DA47-3338-4062-AB65-E7264C04A49C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {95D00428-DC8D-4810-8503-3BCD411F09FE}
+		SolutionGuid = {D26D685D-6E8A-43BA-BDF0-D832B94CA145}
 	EndGlobalSection
 EndGlobal
