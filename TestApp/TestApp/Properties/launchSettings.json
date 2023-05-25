@@ -3,16 +3,16 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:20257",
-      "sslPort": 44313
+      "applicationUrl": "http://localhost:65363",
+      "sslPort": 44344
     }
   },
   "profiles": {
-    "TextSplitterApp": {
+    "TestApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7077;http://localhost:5220",
+      "applicationUrl": "https://localhost:7166;http://localhost:5201",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
