@@ -13,9 +13,18 @@ namespace TextSplitterApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(TextViewModel model)
         {
-            return View();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Split(TextViewModel model)
+        {
+            var splittedTextArray = model.Text.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            model.SplittedText = string.Join(Environment.NewLine, splittedTextArray);
+
+            return RedirectToAction(nameof(Index), model);
         }
 
         public IActionResult Privacy()
