@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebShopDemo</name>
+    </assembly>
+    <members>
+        <member name="T:WebShopDemo.Controllers.ProductController">
+            <summary>
+            Web shop products
+            </summary>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.#ctor(WebShopDemo.Core.Contracts.IProductService)">
+            <summary>
+            Constructor for productcontroller
+            </summary>
+            <param name="_productService">service from IoC</param>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.Index">
+            <summary>
+            Show all products
+            </summary>
+            <returns>View with all active products</returns>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.Add">
+            <summary>
+            Redirect to form for add product
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.Add(WebShopDemo.Core.Models.ProductViewModel)">
+            <summary>
+            Add new or update product
+            </summary>
+            <param name="model"></param>
+            <returns>View with all active products</returns>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.AddQuantity(System.Guid,System.Int32)">
+            <summary>
+            Get product and add quantity
+            </summary>
+            <param name="id"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
