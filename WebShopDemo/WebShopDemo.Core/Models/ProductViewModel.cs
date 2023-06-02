@@ -15,7 +15,7 @@ namespace WebShopDemo.Core.Models
         /// <summary>
         /// Product name
         /// </summary>
-        [Required]
+        [Required]        
         [StringLength(50, MinimumLength = 2, ErrorMessage = "The {0} must be between {2} and {1} symbols")]
         public string Name { get; set; } = null!;
 

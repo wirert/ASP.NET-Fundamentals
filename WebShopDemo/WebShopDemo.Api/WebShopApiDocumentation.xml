@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebShopDemo.Api</name>
+    </assembly>
+    <members>
+        <member name="T:WebShopDemo.Api.Controllers.ProductController">
+            <summary>
+            Web shop products
+            </summary>
+        </member>
+        <member name="M:WebShopDemo.Api.Controllers.ProductController.#ctor(WebShopDemo.Core.Contracts.IProductService)">
+            <summary>
+            
+            </summary>
+            <param name="_productService"></param>
+        </member>
+        <member name="M:WebShopDemo.Api.Controllers.ProductController.GetAll">
+            <summary>
+            Get all products
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebShopDemo.Api.Controllers.ProductController.Add(WebShopDemo.Core.Models.ProductViewModel)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="model">Product view model</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

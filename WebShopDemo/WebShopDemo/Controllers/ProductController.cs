@@ -33,6 +33,12 @@ namespace WebShopDemo.Controllers
             return View(result);
         }
 
+        /// <summary>
+        /// Buy product 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Buy(Guid id, int count)
         {
@@ -89,6 +95,11 @@ namespace WebShopDemo.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Remove product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Delete(Guid id)
         {

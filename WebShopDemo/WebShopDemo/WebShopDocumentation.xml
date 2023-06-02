@@ -21,6 +21,14 @@
             </summary>
             <returns>View with all active products</returns>
         </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.Buy(System.Guid,System.Int32)">
+            <summary>
+            Buy product 
+            </summary>
+            <param name="id"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebShopDemo.Controllers.ProductController.Add">
             <summary>
             Redirect to form for add product
@@ -40,6 +48,13 @@
             </summary>
             <param name="id"></param>
             <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebShopDemo.Controllers.ProductController.Delete(System.Guid)">
+            <summary>
+            Remove product
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
     </members>
