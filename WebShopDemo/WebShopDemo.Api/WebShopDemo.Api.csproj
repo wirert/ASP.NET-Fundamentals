@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>WebShopApiDocumentation.xml</DocumentationFile>
+    <UserSecretsId>5c5cf8e7-435a-4acc-8e6b-bcd7c3720cca</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
