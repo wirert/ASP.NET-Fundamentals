@@ -26,7 +26,7 @@ namespace WebShopDemo.Core.Data.Common
             return this.Context.Set<T>();
         }
 
-        public Repository(WebShopDbContext context)
+        public Repository(ApplicationDbContext context)
         {
             Context = context;
         }

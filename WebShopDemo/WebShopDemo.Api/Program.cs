@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectonString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<WebShopDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectonString));
 
 builder.Services.AddControllers();
