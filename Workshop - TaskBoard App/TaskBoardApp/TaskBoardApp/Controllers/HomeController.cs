@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebApplication1.Models;
+using TaskBoardApp.Models;
 
-namespace WebApplication1.Controllers
+namespace TaskBoardApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,11 +18,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
