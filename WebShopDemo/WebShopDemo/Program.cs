@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebShopDemo.Core.Constants;
 using WebShopDemo.Core.Contracts;
 using WebShopDemo.Core.Data;
 using WebShopDemo.Core.Data.Common;
@@ -27,12 +28,21 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
+});
+
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy(DataConstants.Policies.CanAddRolesToUsers, policy =>
+        policy.RequireAssertion(context =>
+            context.User.IsInRole(DataConstants.Roles.Manager) &&
+            context.User.IsInRole(DataConstants.Roles.Supervisor)));
 });
 
 builder.Services.AddScoped<IProductService, ProductService>();

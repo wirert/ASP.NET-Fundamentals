@@ -186,6 +186,28 @@
             <param name="returnUrl"></param>
             <returns></returns>
         </member>
+        <member name="M:WebShopDemo.Controllers.AccountController.CreateRoles">
+            <summary>
+            Create roles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebShopDemo.Controllers.BaseController">
+            <summary>
+            Custom base controller for requiring authorization by default for derived controllers
+            </summary>
+        </member>
+        <member name="P:WebShopDemo.Controllers.BaseController.UserFirstName">
+            <summary>
+            Custom property for user first name extracted from claim
+            </summary>
+        </member>
+        <member name="M:WebShopDemo.Controllers.BaseController.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Put first name in ViewBag on every action if any authenticated user
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="T:WebShopDemo.Controllers.ProductController">
             <summary>
             Web shop products

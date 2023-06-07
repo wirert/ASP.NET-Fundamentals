@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using WebShopDemo.Core.Constants;
 
 namespace WebShopDemo.Core.Data.Models
 {
@@ -12,7 +13,7 @@ namespace WebShopDemo.Core.Data.Models
 
         [Comment("Product name")]
         [Required]
-        [MaxLength(50)]
+        [MaxLength(DataConstants.Product.NameMaxLenght)]
         public string Name { get; set; } = null!;
 
         [Comment("Product price")]

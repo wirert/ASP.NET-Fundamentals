@@ -1,0 +1,17 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Select user";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active">
+        Select user by Email
+    </button>
+    @foreach (var email in Model)
+    {
+        <button type="button" class="list-group-item list-group-item-action" asp-controller="Account" asp-action="AddRoles" name="@email">@email</button>
+    }  
+    
+</div>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebShopDemo.Core.Constants;
 
 namespace WebShopDemo.Core.Models
 {
@@ -16,7 +17,9 @@ namespace WebShopDemo.Core.Models
         /// Product name
         /// </summary>
         [Required]        
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "The {0} must be between {2} and {1} symbols")]
+        [StringLength(DataConstants.Product.NameMaxLenght, 
+            MinimumLength = DataConstants.Product.NameMinLenght, 
+            ErrorMessage = "The {0} must be between {2} and {1} symbols")]
         public string Name { get; set; } = null!;
 
         /// <summary>

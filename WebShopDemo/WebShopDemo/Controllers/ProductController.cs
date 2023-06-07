@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebShopDemo.Core.Constants;
 using WebShopDemo.Core.Contracts;
 using WebShopDemo.Core.Models;
 
@@ -8,8 +9,7 @@ namespace WebShopDemo.Controllers
     /// <summary>
     /// Web shop products
     /// </summary>
-    [Authorize]    
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductService productService;
 
@@ -103,6 +103,7 @@ namespace WebShopDemo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = DataConstants.Roles.Manager)]
         [HttpPost]
         public async Task<IActionResult> Delete(Guid id)
         {
