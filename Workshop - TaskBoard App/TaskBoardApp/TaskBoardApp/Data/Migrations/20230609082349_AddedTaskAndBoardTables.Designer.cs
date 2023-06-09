@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskBoardApp.Data;
 
@@ -11,9 +12,10 @@ using TaskBoardApp.Data;
 namespace TaskBoardApp.Data.Migrations
 {
     [DbContext(typeof(TaskBoardAppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230609082349_AddedTaskAndBoardTables")]
+    partial class AddedTaskAndBoardTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,23 +242,6 @@ namespace TaskBoardApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Boards");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Open"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "In Progress"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Done"
-                        });
                 });
 
             modelBuilder.Entity("TaskBoardApp.Data.Models.Task", b =>
@@ -294,44 +279,6 @@ namespace TaskBoardApp.Data.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Tasks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BoardId = 1,
-                            CreatedOn = new DateTime(2022, 11, 21, 20, 8, 10, 190, DateTimeKind.Local).AddTicks(3742),
-                            Description = "Implement better styling for all public pages",
-                            OwnerId = "2bd4cb6d-b8bd-440f-a8f0-f84b8ec225ef",
-                            Title = "Improve CSS styles"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BoardId = 1,
-                            CreatedOn = new DateTime(2023, 6, 4, 20, 8, 10, 190, DateTimeKind.Local).AddTicks(3776),
-                            Description = "Create Android client app for the TaskBoard RESTful API",
-                            OwnerId = "2bd4cb6d-b8bd-440f-a8f0-f84b8ec225ef",
-                            Title = "Android Client App"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BoardId = 2,
-                            CreatedOn = new DateTime(2023, 5, 9, 20, 8, 10, 190, DateTimeKind.Local).AddTicks(3780),
-                            Description = "Create Windows Forms desktop app client for the TaskBoard RESTful API",
-                            OwnerId = "b5731c65-0597-45ab-a4ff-55b8eac87aac",
-                            Title = "Desktop Client App"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BoardId = 3,
-                            CreatedOn = new DateTime(2022, 6, 9, 20, 8, 10, 190, DateTimeKind.Local).AddTicks(3783),
-                            Description = "Implement [Create Task] page for adding new tasks",
-                            OwnerId = "b5731c65-0597-45ab-a4ff-55b8eac87aac",
-                            Title = "Create Tasks"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
