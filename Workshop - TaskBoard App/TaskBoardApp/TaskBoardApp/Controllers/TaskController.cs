@@ -1,14 +1,15 @@
-﻿using System.Security.Claims;
-
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using TaskBoardApp.Data;
+using TaskBoardApp.Extentions;
 using TaskBoardApp.Models.Task;
 using Task = TaskBoardApp.Data.Models.Task;
 
 namespace TaskBoardApp.Controllers
 {
+    [Authorize]
     public class TaskController : Controller
     {
         private readonly TaskBoardAppDbContext context;
@@ -33,18 +34,6 @@ namespace TaskBoardApp.Controllers
             return View(model);
         }
 
-        private Task<List<TaskBoardModel>> GetBoards()
-        {
-            return context.Boards
-                      .AsNoTracking()
-                      .Select(b => new TaskBoardModel()
-                      {
-                          Id = b.Id,
-                          Name = b.Name
-                      })
-                      .ToListAsync();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create(TaskFormModel model)
         {
@@ -53,7 +42,7 @@ namespace TaskBoardApp.Controllers
                 ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
             }
 
-            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string currentUserId = User.GetId();
 
             if (!ModelState.IsValid)
             {
@@ -109,7 +98,7 @@ namespace TaskBoardApp.Controllers
                 return BadRequest();
             }
 
-            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentUserId = User.GetId();
 
             if (currentUserId != task.OwnerId)
             {
@@ -125,6 +114,109 @@ namespace TaskBoardApp.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TaskFormModel model)
+        {
+            var task = await context.Tasks.FindAsync(id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            var currentUserId = User.GetId();
+
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            if (!(await GetBoards()).Any(b => b.Id == model.BoardId))
+            {
+                ModelState.AddModelError(nameof(model.BoardId), "Board does not exist.");
+
+                return View(model);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Boards = await GetBoards();
+
+                return View(model);
+            }
+
+            task.Title = model.Title;
+            task.Description = model.Description;
+            task.BoardId = model.BoardId;
+
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("All", "Board");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var task = await context.Tasks.FindAsync(id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            var currentUserId = User.GetId();
+
+            if (currentUserId != task.OwnerId)
+            {
+                return Unauthorized();
+            }
+
+            var model = new TaskViewModel()
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description                
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(TaskViewModel model)
+        {
+            var task = await context.Tasks.FindAsync(model.Id);
+
+            if (task == null)
+            {
+                return BadRequest();
+            }
+
+            var currentUserId = User.GetId();
+
+            if (currentUserId != task.OwnerId) 
+            {
+                return Unauthorized();
+            }
+
+            context.Tasks.Remove(task);
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("All", "Board");
+        }
+
+
+
+        private Task<List<TaskBoardModel>> GetBoards()
+        {
+            return context.Boards
+                      .AsNoTracking()
+                      .Select(b => new TaskBoardModel()
+                      {
+                          Id = b.Id,
+                          Name = b.Name
+                      })
+                      .ToListAsync();
         }
     }
 }

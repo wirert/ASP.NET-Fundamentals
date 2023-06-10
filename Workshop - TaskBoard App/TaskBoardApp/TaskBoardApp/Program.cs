@@ -23,7 +23,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
         options.Password.RequireUppercase = false;
     })
     .AddEntityFrameworkStores<TaskBoardAppDbContext>();
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login");
 
 var app = builder.Build();
 
