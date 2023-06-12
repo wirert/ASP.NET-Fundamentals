@@ -89,7 +89,13 @@ namespace Contacts.Controllers
         {
             var contact = await contactsService.FindContactByIdAsync(contactId);
 
-            TempData.Add("contactId", contactId);
+            if (!TempData.ContainsKey("contactId"))
+            {
+                TempData.Add("contactId", contactId);               
+            }
+
+            TempData["contactId"] = contactId;
+
 
             if (contact == null) 
             { 

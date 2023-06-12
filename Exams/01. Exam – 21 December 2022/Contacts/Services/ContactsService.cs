@@ -44,7 +44,7 @@ namespace Contacts.Services
 
         public async Task EditContactAsync(AddContactViewModel model, int contactId)
         {
-            var contact = await FindContactByIdAsync(contactId);
+            var contact = await context.Contacts.FindAsync(contactId);
 
             if (contact != null)
             {

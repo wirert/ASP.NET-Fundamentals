@@ -39,10 +39,13 @@
                             </form>
                         </span>
                         <span style="float:right">
+                            <a asp-controller="Contacts" asp-action="Edit" asp-route-contactId="@contact.ContactId" class="btn btn-secondary p-2 px-3">Edit</a>
+                        </span>
+                        @*<span style="float:right">
                             <form class="input-group-sm" asp-controller="Contacts" asp-action="Edit" asp-route-contactId="@contact.ContactId">
                                 <input type="submit" value="Edit" class="fs-6 btn btn-secondary mb-3 p-2 px-3" />
                             </form>
-                        </span>
+                        </span>*@
                     </td>
                 </tr>
             }
