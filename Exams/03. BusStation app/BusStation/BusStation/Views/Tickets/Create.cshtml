@@ -1,0 +1,14 @@
+﻿@model CreateTicketsViewModel
+
+<form method="post" class="seat-form">
+    <div asp-validation-summary="ModelOnly"></div>
+   <input type="text" placeholder="Price" id="price" name="Price">
+    <span asp-validation-for="@Model.Price"></span>
+   <input type="number" name="TicketsCount" min="1" max="10" placeholder="Tickets Counter" >
+    <span asp-validation-for="@Model.TicketsCount"></span>
+   <button type="submit" class="create-seat" value="Create Seat">Create Seat</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

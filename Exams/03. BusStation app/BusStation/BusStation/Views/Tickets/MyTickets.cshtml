@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MyTicketViewModel>
+
+<main>
+    <h3>My Tickets</h3>
+    @foreach (var ticket in Model)
+    {
+        <section class="purchased-ticket">
+            <div class="purchased-left">
+                <img src=@ticket.DestinationImage alt="">
+            </div>
+            <div class="purchased-right">
+                <div>
+                    <h3>@ticket.Destination</h3><span>@ticket.DateAndTime</span>
+                </div>
+                <p>Ticket price: @ticket.TicketPrice euros</p>
+            </div>
+        </section>
+    }    
+</main>

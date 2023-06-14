@@ -176,7 +176,7 @@ namespace Watchlist.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasComment("Movie genre");
 
@@ -246,7 +246,7 @@ namespace Watchlist.Data.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
 
                     b.HasComment("Movie class");
                 });
@@ -328,7 +328,7 @@ namespace Watchlist.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UsersMovies");
+                    b.ToTable("UsersMovies", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

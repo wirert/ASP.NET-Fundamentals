@@ -1,0 +1,14 @@
+﻿@model IEnumerable<AllDestinationsViewModel>
+
+<section class="added-travels">
+    @foreach (var dest in Model)
+    {
+        <div class="added-travel">
+            <img src=@dest.ImageUrl alt="" class="picture-added-travel">
+            <h3>From @dest.Origin to @dest.DestinationName</h3>
+            <span>Tickets #@dest.Tickets </span><span>@dest.Date @dest.Time</span>
+            <a href="/Tickets/Create?destinationId=@dest.Id" class="addTickets">Add Tickets</a>
+            <a href="/Tickets/Reserve?destinationId=@dest.Id" class="bookTrip">Book a Trip</a>
+        </div>
+    }
+</section>
