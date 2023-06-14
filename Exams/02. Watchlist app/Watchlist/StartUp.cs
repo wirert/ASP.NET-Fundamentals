@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Watchlist.Data;
+using Watchlist.Data.Entities;
+using Watchlist.Services;
+using Watchlist.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,7 @@ builder.Services.AddDbContext<WatchlistDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 
@@ -19,6 +22,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequireUppercase = false;
 })
     .AddEntityFrameworkStores<WatchlistDbContext>();
+builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(option => option.LoginPath = "/User/Login");
+
+builder.Services.AddScoped<IMoviesService, MoviesService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
