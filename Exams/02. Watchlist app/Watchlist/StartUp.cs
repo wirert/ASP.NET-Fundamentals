@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<WatchlistDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
@@ -22,18 +23,19 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireUppercase = false;
 })
     .AddEntityFrameworkStores<WatchlistDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(option => option.LoginPath = "/User/Login");
 
 builder.Services.AddScoped<IMoviesService, MoviesService>();
 
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
 else

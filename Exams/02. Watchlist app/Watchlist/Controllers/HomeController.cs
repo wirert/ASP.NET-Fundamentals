@@ -11,7 +11,7 @@ namespace Watchlist.Controllers
         {
             if(User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("All", "Movies");
             }
 
             return View();

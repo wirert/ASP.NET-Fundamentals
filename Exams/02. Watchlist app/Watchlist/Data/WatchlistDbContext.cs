@@ -16,6 +16,9 @@ namespace Watchlist.Data
 
         public DbSet<Genre> Genres { get; set; } = null!;
 
+        public DbSet<UserMovie> UsersMovies { get; set; } = null!;
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<UserMovie>().HasKey(k => new { k.MovieId, k.UserId });
