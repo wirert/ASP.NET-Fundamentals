@@ -1,13 +1,15 @@
-﻿using BusStation.Data.Entities;
-using BusStation.Models;
+﻿using FootballManager.Data.Entities;
+using FootballManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BusStation.Controllers
+namespace FootballManager.Controllers
 {
-    public class UsersController : Controller
+    /// <summary>
+    /// User identity controller
+    /// </summary>
+    public class UsersController : BaseController
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
@@ -18,13 +20,17 @@ namespace BusStation.Controllers
             signInManager = _signInManager;
         }
 
+        /// <summary>
+        /// Register a new user get method
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("All", "Destinations");
+                return RedirectToAction("All", "Players");
             }
 
             var model = new RegisterViewModel();
@@ -32,11 +38,14 @@ namespace BusStation.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Register a new user post method
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -44,15 +53,15 @@ namespace BusStation.Controllers
 
             var user = new User()
             {
-                UserName = model.Username,
-                Email = model.Email
+                Email = model.Email,
+                UserName = model.UserName
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
 
             foreach (var error in result.Errors)
@@ -63,23 +72,31 @@ namespace BusStation.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Login existing user
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             if (User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("All", "Destinations");
+                return RedirectToAction("All", "Players");
             }
 
-            var model = new LogInViewModel();
+            var model = new LoginViewModel();
 
             return View(model);
         }
 
+        /// <summary>
+        /// Login existing user
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login(LogInViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +107,7 @@ namespace BusStation.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError(nameof(model.UserName), "Invalid Username");
+                ModelState.AddModelError(nameof(model.UserName), "Invalid Username!");
 
                 return View(model);
             }
@@ -99,14 +116,18 @@ namespace BusStation.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("All", "Destinations");
+                return RedirectToAction("All", "Players");
             }
 
             ModelState.AddModelError("", "Invalid Username or Password!");
 
             return View(model);
         }
-                
+
+        /// <summary>
+        /// Logout a user
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();

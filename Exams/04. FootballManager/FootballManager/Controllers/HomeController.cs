@@ -7,8 +7,15 @@ using FootballManager.Models;
 
 namespace FootballManager.Controllers
 {
+    /// <summary>
+    /// Home controller. Accessible by everybody
+    /// </summary>
     public class HomeController : BaseController
     {
+        /// <summary>
+        /// The default action when accessing the app
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public IActionResult Index()
         {

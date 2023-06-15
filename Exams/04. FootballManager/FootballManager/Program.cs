@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using FootballManager.Data;
 using FootballManager.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using FootballManager.Services.Contracts;
+using FootballManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(cfg => cfg.LoginPath = "/User/Login");
+
+builder.Services.AddScoped<IPlayersService, PlayersService>();
 
 var app = builder.Build();
 

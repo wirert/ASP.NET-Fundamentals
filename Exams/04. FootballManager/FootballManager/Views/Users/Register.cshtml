@@ -1,31 +1,42 @@
-﻿<h1 class="text-center mt-2">Register</h1>
+﻿@model RegisterViewModel
+
+<h1 class="text-center mt-2">Register</h1>
 <hr class="bg-primary w-75">
 <form class="mx-auto w-50" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
     <div class="form-group">
         <div class="label-holder textCol d-flex justify-content-center">
             <label for="username" class="h4 mb-2 text-white">Username</label>
         </div>
         <input type="text" class="form-control" id="username" name="Username" />
+        <span asp-validation-for="@Model.UserName"></span>
     </div>
     <div class="form-group">
         <div class="label-holder text-white textCol d-flex justify-content-center">
             <label for="email" class="h4 mb-2">Email</label>
         </div>
         <input type="email" class="form-control" id="email" name="Email" />
+        <span asp-validation-for="@Model.Email"></span>
     </div>
     <div class="form-group">
         <div class="label-holder text-white textCol d-flex justify-content-center">
             <label for="password" class="h4 mb-2">Password</label>
         </div>
         <input type="password" class="form-control" id="password" name="Password" />
+        <span asp-validation-for="@Model.Password"></span>
     </div>
     <div class="form-group">
         <div class="label-holder text-white textCol d-flex justify-content-center">
             <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
         </div>
         <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" />
+        <span asp-validation-for="@Model.ConfirmPassword"></span>
     </div>
     <div class="button-holder d-flex justify-content-center">
         <button type="submit" class="btn btn-block btn-primary text-white mb-3" value="Register">Register</button>
     </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    }
