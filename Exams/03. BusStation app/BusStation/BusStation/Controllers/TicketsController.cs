@@ -1,8 +1,9 @@
-﻿using BusStation.Models;
-using BusStation.Services.Contracts;
-using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+
+using BusStation.Models;
+using BusStation.Services.Contracts;
 
 namespace BusStation.Controllers
 {
