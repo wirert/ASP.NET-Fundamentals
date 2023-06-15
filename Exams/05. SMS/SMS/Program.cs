@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SMS.Data;
 using SMS.Data.Entities;
+using SMS.Services;
+using SMS.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.User.RequireUniqueEmail = true;
 
     options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 5;
+    options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
@@ -29,6 +31,9 @@ builder.Services.AddDefaultIdentity<User>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(cfg => cfg.LoginPath = "/Users/Login");
+
+builder.Services.AddScoped<IProductsService, ProductsService>();
+builder.Services.AddScoped<ICartsService, CartsService>();
 
 var app = builder.Build();
 

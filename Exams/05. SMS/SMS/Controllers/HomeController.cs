@@ -1,12 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SMS.Models;
+using SMS.Services.Contracts;
 using System.Diagnostics;
 
 namespace SMS.Controllers
 {
     public class HomeController : BaseController
     {
+        public readonly IProductsService productsService;
+
+        public HomeController(IProductsService _productsService)
+        {
+            productsService = _productsService;
+        }
 
         [AllowAnonymous]
         public IActionResult Index()
@@ -19,9 +26,13 @@ namespace SMS.Controllers
             return View();
         }
 
-        public IActionResult IndexLoggedIn()
+        public async Task<IActionResult> IndexLoggedIn()
         {
-            return View();
+            ViewBag.UserName = GetUserName();
+
+            var models = await productsService.GetAllAsync();
+
+            return View(models);
         }
 
         [AllowAnonymous]
