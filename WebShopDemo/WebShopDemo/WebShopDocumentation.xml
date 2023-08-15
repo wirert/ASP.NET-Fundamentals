@@ -192,6 +192,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:WebShopDemo.Controllers.AccountController.AddRole">
+            <summary>
+            Add user to role
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebShopDemo.Controllers.AccountController.AddRole(WebShopDemo.Models.AddRoleViewModel)">
+            <summary>
+            Add user to role
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebShopDemo.Controllers.BaseController">
             <summary>
             Custom base controller for requiring authorization by default for derived controllers
